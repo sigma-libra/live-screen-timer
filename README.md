@@ -1,16 +1,33 @@
-# live_screen_timer
+# Live Screen Timer
 
-A new Flutter project.
+An Android app that tracks how long your screen has been on since the last unlock, displayed as a persistent notification.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Persistent notification showing time since last screen unlock (`0h 0m 0s`)
+- Automatically resets when the screen goes dark
+- Starts fresh on every unlock
+- Runs on device startup — no need to open the app
+- Themed in orange, gold, and red
 
-A few resources to get you started if this is your first Flutter project:
+## How it works
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The app runs a native Android foreground service (`ScreenTimerService`) that registers a broadcast receiver at runtime for `SCREEN_OFF` and `USER_PRESENT` events. When the screen turns off the notification is dismissed; when the screen is unlocked a new notification appears and starts counting from zero.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Setup
+
+To set a custom app icon, drop a square PNG (1024×1024 recommended) at `assets/icon.png` and run:
+```bash
+flutter pub run flutter_launcher_icons
+```
+
+Run on device:
+```bash
+flutter run
+```
+
+## Requirements
+
+- Flutter 3.x+
+- Android 8.0 (API 26) or higher
+- Notification permission (prompted on first launch)
