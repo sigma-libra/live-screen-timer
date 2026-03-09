@@ -43,6 +43,7 @@ class PermissionScreen extends StatefulWidget {
 class _PermissionScreenState extends State<PermissionScreen> {
   bool _permissionGranted = false;
   bool _serviceStarted = false;
+  bool _batteryOptimizationDisabled = false;
 
   @override
   void initState() {
@@ -64,7 +65,18 @@ class _PermissionScreenState extends State<PermissionScreen> {
 
   Future<void> _startService() async {
     await _channel.invokeMethod('startService');
-    setState(() => _serviceStarted = true);
+    final batteryOk = await _channel.invokeMethod<bool>('isBatteryOptimizationDisabled') ?? false;
+    setState(() {
+      _serviceStarted = true;
+      _batteryOptimizationDisabled = batteryOk;
+    });
+  }
+
+  Future<void> _requestDisableBatteryOptimization() async {
+    await _channel.invokeMethod('requestDisableBatteryOptimization');
+    await Future.delayed(const Duration(seconds: 1));
+    final batteryOk = await _channel.invokeMethod<bool>('isBatteryOptimizationDisabled') ?? false;
+    setState(() => _batteryOptimizationDisabled = batteryOk);
   }
 
   @override
@@ -125,6 +137,23 @@ class _PermissionScreenState extends State<PermissionScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 14),
                 ),
+                if (!_batteryOptimizationDisabled) ...[
+                  const SizedBox(height: 24),
+                  const Text(
+                    'Battery optimization may stop the timer. Disable it to keep it running.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 13, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton.icon(
+                    onPressed: _requestDisableBatteryOptimization,
+                    icon: const Icon(Icons.battery_saver),
+                    label: const Text('Disable Battery Optimization'),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                    ),
+                  ),
+                ],
               ],
             ],
           ),

@@ -3,7 +3,10 @@ package libra.sigma.live_screen_timer
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
+import android.os.PowerManager
+import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import io.flutter.embedding.android.FlutterActivity
@@ -40,6 +43,18 @@ class MainActivity : FlutterActivity() {
                         startTimerService()
                         result.success(null)
                     }
+                    "isBatteryOptimizationDisabled" -> {
+                        result.success(isBatteryOptimizationDisabled())
+                    }
+                    "requestDisableBatteryOptimization" -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
+                                data = Uri.parse("package:$packageName")
+                            }
+                            startActivity(intent)
+                        }
+                        result.success(null)
+                    }
                     else -> result.notImplemented()
                 }
             }
@@ -68,6 +83,12 @@ class MainActivity : FlutterActivity() {
         } else {
             true
         }
+    }
+
+    private fun isBatteryOptimizationDisabled(): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true
+        val pm = getSystemService(POWER_SERVICE) as PowerManager
+        return pm.isIgnoringBatteryOptimizations(packageName)
     }
 
     private fun startTimerService() {
