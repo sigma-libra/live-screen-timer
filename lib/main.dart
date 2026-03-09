@@ -94,10 +94,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
             children: [
               const Icon(Icons.timer, size: 80, color: AppColors.orange),
               const SizedBox(height: 24),
-              const Text(
-                'Screen Time Tracker',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-              ),
+              const Text('Screen Time Tracker', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
               const Text(
                 'Shows a notification counting how long your screen has been on since the last unlock.',
@@ -116,20 +113,14 @@ class _PermissionScreenState extends State<PermissionScreen> {
                   onPressed: _requestPermission,
                   icon: const Icon(Icons.notifications_active),
                   label: const Text('Grant Notification Permission'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  ),
+                  style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
                 ),
               ] else if (_serviceStarted) ...[
                 const Icon(Icons.check_circle, color: AppColors.gold, size: 48),
                 const SizedBox(height: 16),
                 const Text(
                   'Timer is running!',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.gold,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.gold),
                 ),
                 const SizedBox(height: 8),
                 const Text(
@@ -140,7 +131,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
                 if (!_batteryOptimizationDisabled) ...[
                   const SizedBox(height: 24),
                   const Text(
-                    'Battery optimization may stop the timer. Disable it to keep it running.',
+                    'Battery optimization may stop the timer. Disable it to keep it running. (This is safe, every app with sticky notifications does this.)',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 13, color: Colors.grey),
                   ),
@@ -149,9 +140,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
                     onPressed: _requestDisableBatteryOptimization,
                     icon: const Icon(Icons.battery_saver),
                     label: const Text('Disable Battery Optimization'),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                    ),
+                    style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14)),
                   ),
                 ],
               ],
