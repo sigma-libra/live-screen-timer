@@ -35,10 +35,10 @@ class ScreenTimerService : Service() {
                     handler.post(updateRunnable)
                 }
                 Intent.ACTION_SCREEN_OFF -> {
-                    // Screen off: stop counting and remove notification
+                    // Screen off: stop counting but keep foreground to prevent Android from killing the service
                     handler.removeCallbacks(updateRunnable)
-                    @Suppress("DEPRECATION")
-                    stopForeground(true)
+                    val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+                    manager.notify(NOTIFICATION_ID, buildNotification("Screen off"))
                 }
             }
         }
@@ -89,7 +89,7 @@ class ScreenTimerService : Service() {
 
     private fun buildNotification(text: String): Notification {
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Live Screen Timer")
+            .setContentTitle("ScreenTime")
             .setContentText(text)
             .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
             .setOngoing(true)
