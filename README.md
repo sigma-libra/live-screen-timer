@@ -8,7 +8,7 @@ An Android app that tracks how long your screen has been on since the last unloc
 - Automatically resets when the screen goes dark
 - Starts fresh on every unlock
 - Runs on device startup — no need to open the app
-- Themed in orange, gold, and red
+- Themed in orange on dark
 
 ## How it works
 
@@ -25,6 +25,23 @@ Run on device:
 ```bash
 flutter run
 ```
+
+## Building a release AAB
+
+1. Fill in `android/key.properties` (not committed — already gitignored):
+   ```properties
+   storePassword=<password>
+   keyPassword=<password>
+   keyAlias=strawberry-android-key
+   storeFile=/home/sabrina/keystore/google-play-keystore.jks
+   ```
+
+2. Build:
+   ```bash
+   flutter build appbundle --release
+   ```
+
+Output: `build/app/outputs/bundle/release/app-release.aab`
 
 ## Requirements
 
