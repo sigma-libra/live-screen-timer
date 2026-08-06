@@ -1,0 +1,10 @@
+{
+  "@@locale": "es",
+  "appTitle": "ScreenTime",
+  "setupDescription": "Cuenta el tiempo que tu pantalla ha estado encendida desde tu último desbloqueo, mostrado como una notificación persistente.",
+  "allowNotifications": "Permitir notificaciones",
+  "resetsEachUnlock": "Se reinicia cada vez que desbloqueas",
+  "notificationPreview": "VISTA PREVIA DE NOTIFICACIÓN",
+  "batteryWarning": "Android puede pausar el temporizador para ahorrar batería.",
+  "keepRunning": "Continuar"
+}

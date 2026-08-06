@@ -38,7 +38,7 @@ class ScreenTimerService : Service() {
                     // Screen off: stop counting but keep foreground to prevent Android from killing the service
                     handler.removeCallbacks(updateRunnable)
                     val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-                    manager.notify(NOTIFICATION_ID, buildNotification("Screen off"))
+                    manager.notify(NOTIFICATION_ID, buildNotification(getString(R.string.screen_off)))
                 }
             }
         }
@@ -89,7 +89,7 @@ class ScreenTimerService : Service() {
 
     private fun buildNotification(text: String): Notification {
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("ScreenTime")
+            .setContentTitle(getString(R.string.notification_title))
             .setContentText(text)
             .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
             .setOngoing(true)
@@ -102,7 +102,7 @@ class ScreenTimerService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "Screen Timer",
+                getString(R.string.notification_channel_name),
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
                 setSound(null, null)

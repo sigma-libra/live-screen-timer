@@ -1,0 +1,17 @@
+{
+  "@@locale": "en",
+  "appTitle": "ScreenTime",
+  "@appTitle": { "description": "App brand name" },
+  "setupDescription": "Counts how long your screen has been on since your last unlock, shown as a persistent notification.",
+  "@setupDescription": { "description": "Description shown on the setup screen" },
+  "allowNotifications": "Allow Notifications",
+  "@allowNotifications": { "description": "Button to request notification permission" },
+  "resetsEachUnlock": "Resets each time you unlock",
+  "@resetsEachUnlock": { "description": "Subtitle shown when timer is running" },
+  "notificationPreview": "NOTIFICATION PREVIEW",
+  "@notificationPreview": { "description": "Label above the notification preview widget" },
+  "batteryWarning": "Android may pause the timer to save battery.",
+  "@batteryWarning": { "description": "Warning about battery optimization" },
+  "keepRunning": "Keep running",
+  "@keepRunning": { "description": "Button to disable battery optimization" }
+}

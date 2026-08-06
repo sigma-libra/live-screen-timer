@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Live Screen Timer</string>
+    <string name="notification_title">ScreenTime</string>
+    <string name="notification_channel_name">Minuteur d\'écran</string>
+    <string name="screen_off">Écran éteint</string>
+</resources>

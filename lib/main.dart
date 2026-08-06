@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart';
 
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'ScreenTime',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: const ColorScheme.dark(
@@ -143,7 +147,7 @@ class _ScreenTimeHomeState extends State<ScreenTimeHome>
         children: [
           const SizedBox(height: 56),
           Text(
-            'ScreenTime',
+            AppLocalizations.of(context)!.appTitle,
             style: GoogleFonts.spaceGrotesk(
               fontSize: 38,
               fontWeight: FontWeight.w700,
@@ -153,7 +157,7 @@ class _ScreenTimeHomeState extends State<ScreenTimeHome>
           ),
           const SizedBox(height: 8),
           Text(
-            'Counts how long your screen has been on since your last unlock, shown as a persistent notification.',
+            AppLocalizations.of(context)!.setupDescription,
             style: GoogleFonts.spaceGrotesk(
               fontSize: 16,
               color: AppColors.muted,
@@ -174,7 +178,7 @@ class _ScreenTimeHomeState extends State<ScreenTimeHome>
                 elevation: 0,
               ),
               child: Text(
-                'Allow Notifications',
+                AppLocalizations.of(context)!.allowNotifications,
                 style: GoogleFonts.spaceGrotesk(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -197,7 +201,7 @@ class _ScreenTimeHomeState extends State<ScreenTimeHome>
         children: [
           const SizedBox(height: 56),
           Text(
-            'ScreenTime',
+            AppLocalizations.of(context)!.appTitle,
             style: GoogleFonts.spaceGrotesk(
               fontSize: 28,
               fontWeight: FontWeight.w700,
@@ -210,7 +214,7 @@ class _ScreenTimeHomeState extends State<ScreenTimeHome>
           Row(
             children: [
               Text(
-                'Resets each time you unlock',
+                AppLocalizations.of(context)!.resetsEachUnlock,
                 style: GoogleFonts.spaceGrotesk(
                   fontSize: 13,
                   color: AppColors.orange,
@@ -262,7 +266,7 @@ class _ScreenTimeHomeState extends State<ScreenTimeHome>
           ),
           const SizedBox(height: 40),
           Text(
-            'NOTIFICATION PREVIEW',
+            AppLocalizations.of(context)!.notificationPreview,
             style: GoogleFonts.spaceGrotesk(
               fontSize: 11,
               fontWeight: FontWeight.w600,
@@ -337,7 +341,7 @@ class _ScreenTimeHomeState extends State<ScreenTimeHome>
         const SizedBox(width: 10),
         Expanded(
           child: Text(
-            'Android may pause the timer to save battery.',
+            AppLocalizations.of(context)!.batteryWarning,
             style: GoogleFonts.spaceGrotesk(
               fontSize: 13,
               color: AppColors.muted,
@@ -355,7 +359,7 @@ class _ScreenTimeHomeState extends State<ScreenTimeHome>
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            'Keep running',
+            AppLocalizations.of(context)!.keepRunning,
             style: GoogleFonts.spaceGrotesk(
               fontSize: 13,
               fontWeight: FontWeight.w600,
